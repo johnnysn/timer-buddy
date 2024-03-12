@@ -14,7 +14,7 @@ export function createActivitiesStore() {
 		}
 
 		return () => {
-			console.log('Cleaning up');
+			// console.log('Cleaning up');
 		};
 	});
 
@@ -44,9 +44,28 @@ export function createActivitiesStore() {
 		update((curr) => [...curr, activity]);
 	}
 
+	function put(id: string, name: string, description: string) {
+		update(curr => {
+			const i = curr.findIndex(a => a.id === id);
+
+			if (i === -1) return curr;
+
+			curr[i].name = name;
+			curr[i].description = description;
+
+			return [...curr];
+		});
+	}
+
+	function del(id: string) {
+		update(curr => curr.filter(a => a.id !== id));
+	}
+
 	return {
 		subscribe: actualStore.subscribe,
-		add
+		add,
+		delete: del,
+		update: put
 	};
 }
 

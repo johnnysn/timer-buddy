@@ -79,6 +79,13 @@ export function createActivitiesStore() {
 
 				if (activeEvent) {
 					activeEvent.end = new Date();
+
+					activity.averageDuration =
+						activity.events
+							.map((e) => e.end!.getTime() - e.start.getTime())
+							.reduce((a, b) => a + b, 0) /
+						activity.events.length /
+						1000;
 				}
 			}
 
@@ -108,6 +115,13 @@ export function createActivitiesStore() {
 			}
 			activity.active = false;
 			activity.activeEventStartedAt = undefined;
+
+			activity.averageDuration =
+				activity.events
+					.map((e) => e.end!.getTime() - e.start.getTime())
+					.reduce((a, b) => a + b, 0) /
+				activity.events.length /
+				1000;
 
 			return [...curr];
 		});

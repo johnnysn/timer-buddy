@@ -145,6 +145,28 @@ export function createActivitiesStore() {
 		});
 	}
 
+	function deleteEvent(id: string, eventId: string) {
+		update((curr) => {
+			const activityIndex = curr.findIndex((a) => a.id === id);
+			if (activityIndex === -1) return curr;
+			const activity = curr[activityIndex];
+
+			const eventIndex = activity.events.findIndex((e) => e.id === eventId);
+			if (eventIndex === -1) return curr;
+
+			activity.events = activity.events.filter((e) => e.id !== eventId);
+			activity.averageDuration =
+				activity.events
+					.filter((e) => e.end)
+					.map((e) => e.end!.getTime() - e.start.getTime())
+					.reduce((a, b) => a + b, 0) /
+				activity.events.length /
+				1000;
+
+			return [...curr];
+		});
+	}
+
 	return {
 		subscribe: actualStore.subscribe,
 		add,
@@ -152,7 +174,8 @@ export function createActivitiesStore() {
 		update: put,
 		start,
 		stop,
-		cancel
+		cancel,
+		deleteEvent
 	};
 }
 

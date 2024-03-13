@@ -6,6 +6,7 @@
 	import { activities } from '$lib/stores/activities-store';
 	import type { Activity } from '$lib/types/activity';
 	import intervalFormatter from '$lib/utils/interval-formatter';
+	import EventsTable from './EventsTable.svelte';
 
 	let activity: Activity | undefined;
 
@@ -26,15 +27,15 @@
 			: 'No measurements yet!'}
 	</p>
 
-  <p class="flex flex-col justify-items-center">
-    <strong class="mr-2">Description: </strong>
-    <span>{activity.description || 'No description for this activity'}</span>
-  </p>
+	<p class="flex flex-col justify-items-center">
+		<strong class="mr-2">Description: </strong>
+		<span>{activity.description || 'No description for this activity'}</span>
+	</p>
 
-  <div class="w-full flex justify-end items-center gap-4">
-    <a href={`/activities/${activity.id}/edit`}>
-      <Button class="primary">Edit</Button>
-    </a>
+	<div class="w-full flex justify-end items-center gap-4">
+		<a href={`/activities/${activity.id}/edit`}>
+			<Button class="primary">Edit</Button>
+		</a>
 
 		<MyModal
 			modalID="confirmation-dialog-delete-activity"
@@ -46,7 +47,13 @@
 			buttonClass="danger"
 			on:modalReturn={(event) => handleDeleteActivity(event.detail.selection)}
 		/>
-  </div>
+	</div>
 
-  <p class="mt-4 mb-4"><strong>Measurement events for this activity:</strong></p>
+	<p class="mt-4 mb-4"><strong>Measurement events for this activity:</strong></p>
+
+	{#if activity.events.length > 0}
+		<EventsTable {activity} />
+	{:else}
+		<p class="w-full flex justify-start">No events yet!</p>
+	{/if}
 {/if}

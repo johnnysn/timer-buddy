@@ -127,13 +127,32 @@ export function createActivitiesStore() {
 		});
 	}
 
+	function cancel(id: string) {
+		update((curr) => {
+			const activityIndex = curr.findIndex((a) => a.id === id);
+
+			if (activityIndex === -1) return curr;
+			const activity = curr[activityIndex];
+
+			const activeEvent = activity.events.find((e) => !e.end);
+			if (!activeEvent) return curr;
+
+			activity.active = false;
+			activity.activeEventStartedAt = undefined;
+			activity.events = activity.events.filter((e) => e.id !== activeEvent.id);
+
+			return [...curr];
+		});
+	}
+
 	return {
 		subscribe: actualStore.subscribe,
 		add,
 		delete: del,
 		update: put,
 		start,
-		stop
+		stop,
+		cancel
 	};
 }
 

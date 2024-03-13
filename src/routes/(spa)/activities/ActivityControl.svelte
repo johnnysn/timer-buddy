@@ -15,6 +15,10 @@
 	function stopActivity() {
 		activities.stop(activity.id);
 	}
+
+	function cancelActivity() {
+		activities.cancel(activity.id);
+	}
 </script>
 
 <div class="w-full flex flex-col items-center">
@@ -54,7 +58,7 @@
 				<button class="mx-1 text-primary-600" on:click={stopActivity}>
 					<StopCircle />
 				</button>
-				<button class="ml-2 mr-1 text-secondary-600">
+				<button class="ml-2 mr-1 text-secondary-600" on:click={cancelActivity}>
 					<Trash2 />
 				</button>
 			</div>

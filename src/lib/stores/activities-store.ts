@@ -1,6 +1,8 @@
 import type { Activity } from '$lib/types/activity';
 import { writable, type Updater } from 'svelte/store';
 import { browser } from '$app/environment';
+import z from 'zod';
+import { activitySchema } from '$lib/schemas/activity-schema';
 
 export function createActivitiesStore() {
 	const actualStore = writable<Activity[]>([], (set) => {
@@ -9,7 +11,10 @@ export function createActivitiesStore() {
 
 			if (data) {
 				const arr = JSON.parse(data);
-				set(arr);
+
+				const activities = z.array(activitySchema).parse(arr);
+
+				set(activities);
 			}
 		}
 

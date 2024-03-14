@@ -8,4 +8,5 @@ export interface Activity {
 	averageDuration?: number;
 	events: Event[];
 	activeEventStartedAt?: Date;
+	lastStoppedEventId?: string;
 }

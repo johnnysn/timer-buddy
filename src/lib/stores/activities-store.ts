@@ -120,6 +120,7 @@ export function createActivitiesStore() {
 			const activeEvent = activity.events.find((e) => !e.end);
 			if (activeEvent) {
 				activeEvent.end = new Date();
+				activity.lastStoppedEventId = activeEvent.id;
 			}
 			activity.active = false;
 			activity.activeEventStartedAt = undefined;

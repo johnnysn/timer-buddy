@@ -7,6 +7,7 @@
 	import dateFormatter from '$lib/utils/date-formatter';
 
 	export let activity: Activity;
+	let justStopped = false;
 
 	function startActivity() {
 		activities.start(activity.id);
@@ -14,6 +15,7 @@
 
 	function stopActivity() {
 		activities.stop(activity.id);
+		justStopped = true;
 	}
 
 	function cancelActivity() {
@@ -60,6 +62,29 @@
 				</button>
 				<button class="ml-2 mr-1 text-secondary-600" on:click={cancelActivity}>
 					<Trash2 />
+				</button>
+			</div>
+		</div>
+	{/if}
+
+	{#if justStopped}
+		<div class="flex flex-col mb-2 text-sm">
+			<p>
+				Great job! You have just <span class="text-teal-400">finished</span> this activity.
+			</p>
+			<div class="flex justify-center gap-4 items-center">
+				<a
+					href={`/activities/${activity.id}/events/${activity.lastStoppedEventId}`}
+					class="cursor-pointer text-gray-400 hover:text-black dark:hover:text-white"
+				>
+					Edit stop time
+				</a>
+				<span class="rounded-full w-1 h-1 bg-gray-500"></span>
+				<button
+					on:click={() => (justStopped = false)}
+					class="cursor-pointer text-gray-400 hover:text-black dark:hover:text-white"
+				>
+					Dismiss
 				</button>
 			</div>
 		</div>

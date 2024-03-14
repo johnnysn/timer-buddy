@@ -3,6 +3,19 @@ import { writable, type Updater } from 'svelte/store';
 import { browser } from '$app/environment';
 import z from 'zod';
 import { activitySchema } from '$lib/schemas/activity-schema';
+import type { Event } from '$lib/types/event';
+
+function averageDuration(events: Event[]) {
+	if (events.length === 0) return undefined;
+
+	const averageMs =
+		events
+			.filter((e) => e.end)
+			.map((e) => e.end!.getTime() - e.start.getTime())
+			.reduce((a, b) => a + b, 0) / events.length;
+
+	return averageMs / 1000;
+}
 
 export function createActivitiesStore() {
 	const actualStore = writable<Activity[]>([], (set) => {
@@ -80,12 +93,7 @@ export function createActivitiesStore() {
 				if (activeEvent) {
 					activeEvent.end = new Date();
 
-					activity.averageDuration =
-						activity.events
-							.map((e) => e.end!.getTime() - e.start.getTime())
-							.reduce((a, b) => a + b, 0) /
-						activity.events.length /
-						1000;
+					activity.averageDuration = averageDuration(activity.events);
 				}
 			}
 
@@ -116,12 +124,7 @@ export function createActivitiesStore() {
 			activity.active = false;
 			activity.activeEventStartedAt = undefined;
 
-			activity.averageDuration =
-				activity.events
-					.map((e) => e.end!.getTime() - e.start.getTime())
-					.reduce((a, b) => a + b, 0) /
-				activity.events.length /
-				1000;
+			activity.averageDuration = averageDuration(activity.events);
 
 			return [...curr];
 		});
@@ -155,13 +158,26 @@ export function createActivitiesStore() {
 			if (eventIndex === -1) return curr;
 
 			activity.events = activity.events.filter((e) => e.id !== eventId);
-			activity.averageDuration =
-				activity.events
-					.filter((e) => e.end)
-					.map((e) => e.end!.getTime() - e.start.getTime())
-					.reduce((a, b) => a + b, 0) /
-				activity.events.length /
-				1000;
+			activity.averageDuration = averageDuration(activity.events);
+
+			return [...curr];
+		});
+	}
+
+	function editEvent(id: string, eventId: string, start: Date, end: Date | undefined) {
+		update((curr) => {
+			const activityIndex = curr.findIndex((a) => a.id === id);
+			if (activityIndex === -1) return curr;
+			const activity = curr[activityIndex];
+
+			const eventIndex = activity.events.findIndex((e) => e.id === eventId);
+			if (eventIndex === -1) return curr;
+
+			const event = activity.events[eventIndex];
+			event.start = start;
+			event.end = end;
+
+			activity.averageDuration = averageDuration(activity.events);
 
 			return [...curr];
 		});
@@ -175,7 +191,8 @@ export function createActivitiesStore() {
 		start,
 		stop,
 		cancel,
-		deleteEvent
+		deleteEvent,
+		editEvent
 	};
 }
 

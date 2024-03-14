@@ -43,7 +43,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each events as event, index (event.id)}
+			{#each events as event (event.id)}
 				<tr class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-300">
 					<td class="flex justify-center gap-2">
 						<MyModal
@@ -57,7 +57,7 @@
 						>
 							<Trash />
 						</MyModal>
-						<a href={`/events/${event.id}`}>
+						<a href={`/activities/${activity.id}/events/${event.id}`}>
 							<Edit />
 						</a>
 					</td>

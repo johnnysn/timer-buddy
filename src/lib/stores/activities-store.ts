@@ -1,9 +1,10 @@
 import type { Activity } from '$lib/types/activity';
 import { writable, type Updater } from 'svelte/store';
 import { browser } from '$app/environment';
-import z from 'zod';
+import z, { ZodError } from 'zod';
 import { activitySchema } from '$lib/schemas/activity-schema';
 import type { Event } from '$lib/types/event';
+import { addToast } from './toast-store';
 
 function averageDuration(events: Event[]) {
 	if (events.length === 0) return undefined;
@@ -23,11 +24,19 @@ export function createActivitiesStore() {
 			const data = localStorage.getItem('activities');
 
 			if (data) {
-				const arr = JSON.parse(data);
-
-				const activities = z.array(activitySchema).parse(arr);
-
-				set(activities);
+				try {
+					const arr = JSON.parse(data);
+					const activities = z.array(activitySchema).parse(arr);
+					set(activities);
+				} catch (e) {
+					if (e instanceof ZodError) {
+						addToast({message: "Could not load data from local storage.", type: "error"});
+						console.error(e.issues);
+					} else {
+						console.error(e);
+					}
+					set([]);
+				}
 			}
 		}
 

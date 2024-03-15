@@ -1,6 +1,7 @@
 <script>
   import "../app.css";
   import Header from "./Header.svelte";
+	import Toasts from '$lib/components/Toasts.svelte';
 </script>
 
 <svelte:head>
@@ -18,6 +19,8 @@
 		class="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white transition-colors duration-300"
 	>
 		<Header />
+
+		<Toasts />
 
 		<div class="w-full flex justify-center">
 			<div class="w-full max-w-screen-md px-2 md:px-6 mt-4">

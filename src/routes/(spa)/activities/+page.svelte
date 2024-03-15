@@ -4,6 +4,10 @@
 	import { activities } from '$lib/stores/activities-store';
 	import { PlusCircle } from 'lucide-svelte';
 	import ActivityControl from './ActivityControl.svelte';
+	import { fade } from 'svelte/transition';
+	import { slide } from 'svelte/transition';
+	import { quintOut } from 'svelte/easing';
+	
 
 	let showForm = false;
 	let activityName = '';
@@ -27,7 +31,9 @@
 	{/if}
 
 	{#if !showForm}
-		<div class="w-full mb-4 flex justify-between">
+		<div 
+			class="w-full mb-4 flex justify-between"
+		>
 			<button on:click={toggleShowForm}>
 				<PlusCircle color="green" />
 			</button>
@@ -36,6 +42,7 @@
 
 	{#if showForm}
 		<div
+			transition:slide={{ delay: 0, duration: 300, easing: quintOut, axis: 'x' }}
 			class="flex flex-col gap-2 mt-2 mb-6 max-w-screen-md border rounded-lg border-gray-200 dark:border-gray-700 px-4 pt-4 pb-2"
 		>
 			<TextInput
@@ -61,7 +68,7 @@
 
 	<ul class="flex flex-col gap-2">
 		{#each $activities as activity (activity.id)}
-			<li class="item-container px-2 w-full max-w-screen-md">
+			<li class="item-container px-2 w-full max-w-screen-md" transition:fade={{ delay: 250, duration: 300 }}>
 				<ActivityControl {activity} />
 			</li>
 		{/each}

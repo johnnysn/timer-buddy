@@ -2,7 +2,7 @@
 	import { Activity, Timer, User2, NotepadText } from 'lucide-svelte';
 </script>
 
-<header class="w-full flex justify-center bg-primary-400">
+<header class="w-full flex justify-center bg-main-light">
 	<div class="w-full h-16 px-2 md:px-6 flex justify-between items-center max-w-screen-xl">
 		<a href="/" class="flex justify-items-center">
 			<button>
@@ -20,8 +20,7 @@
 				<li>
 					<a href="/"><NotepadText /></a>
 				</li>
-				<li>
-				</li>
+				<li></li>
 			</ul>
 		</div>
 	</div>

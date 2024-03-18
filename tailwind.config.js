@@ -12,6 +12,10 @@ export default {
     },
     colors: {
       primary: colors.sky,
+      main: "#6194B1",
+      "main-dark": "#2E5F7F",
+      "main-light": "#DDF3FE",
+      accent: "#E1634C",
       secondary: colors.rose,
       ...colors,
       gray: colors.zinc,

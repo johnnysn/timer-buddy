@@ -1,6 +1,6 @@
 <script>
-  import "../app.css";
-  import Header from "./Header.svelte";
+	import '../app.css';
+	import Header from './Header.svelte';
 	import Toasts from '$lib/components/Toasts.svelte';
 </script>
 
@@ -23,9 +23,7 @@
 		<Toasts />
 
 		<div class="w-full flex justify-center">
-			<div class="w-full max-w-screen-md px-2 md:px-6 mt-4">
-				<slot />
-			</div>
+			<slot />
 		</div>
 	</div>
 </div>

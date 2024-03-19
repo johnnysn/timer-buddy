@@ -13,9 +13,11 @@ export default {
     colors: {
       primary: colors.sky,
       main: "#6194B1",
+      "main-hover": "#81B4D1",
       "main-dark": "#2E5F7F",
       "main-light": "#DDF3FE",
       accent: "#E1634C",
+      "accent-hover": "#F1735C",
       secondary: colors.rose,
       ...colors,
       gray: colors.zinc,

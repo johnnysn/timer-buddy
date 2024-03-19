@@ -23,19 +23,19 @@
 
 <style>
 	.primary {
-		@apply bg-primary-600 text-white;
+		@apply bg-main text-white;
 	}
 
 	.primary:hover {
-		@apply bg-primary-500;
+		@apply bg-main-hover;
 	}
 
 	.secondary {
-		@apply bg-secondary-600 text-white;
+		@apply bg-accent text-white;
 	}
 
 	.secondary:hover {
-		@apply bg-secondary-500;
+		@apply bg-accent-hover;
 	}
 
 	.success {

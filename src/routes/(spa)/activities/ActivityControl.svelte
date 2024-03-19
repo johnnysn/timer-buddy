@@ -27,7 +27,7 @@
 	<div class="w-full flex items-center">
 		<a class="w-full h-full py-2" href="/activities/{activity.id}">
 			<div class="w-full flex items-center">
-				<button class="mr-2 text-primary-600">
+				<button class="mr-2 text-main">
 					<Info />
 				</button>
 				<span>
@@ -57,10 +57,10 @@
 				<Timer startAt={activity.activeEventStartedAt} />
 			</div>
 			<div class="w-12 flex items-center justify-end">
-				<button class="mx-1 text-primary-600" on:click={stopActivity}>
+				<button class="mx-1 text-main" on:click={stopActivity}>
 					<StopCircle />
 				</button>
-				<button class="ml-2 mr-1 text-secondary-600" on:click={cancelActivity}>
+				<button class="ml-2 mr-1 text-accent" on:click={cancelActivity}>
 					<Trash2 />
 				</button>
 			</div>
@@ -70,7 +70,7 @@
 	{#if justStopped}
 		<div class="flex flex-col mb-2 text-sm">
 			<p>
-				Great job! You have just <span class="text-teal-400">finished</span> this activity.
+				Great job! You have just <span class="text-teal-600">finished</span> this activity.
 			</p>
 			<div class="flex justify-center gap-4 items-center">
 				<a

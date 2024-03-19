@@ -44,7 +44,7 @@
 			message="This will delete the activity and all its measured events. Are you sure to delete it?"
 			textFirstButton="Cancel"
 			textSecondButton="Delete"
-			buttonClass="danger"
+			buttonClass="secondary"
 			on:modalReturn={(event) => handleDeleteActivity(event.detail.selection)}
 		/>
 	</div>

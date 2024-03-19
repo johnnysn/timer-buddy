@@ -20,7 +20,7 @@
 		<div class="w-3/12 flex justify-start items-center">
 			<a href="/activities">
 				<button
-					class="rounded-full md:w-auto h-6 px-2 py-0 bg-primary-600 text-gray-50 hover:bg-primary-500 transition-colors duration-300 text-sm"
+					class="rounded-full md:w-auto h-6 px-2 py-0 bg-main text-gray-50 hover:bg-main-hover transition-colors duration-300 text-sm"
 					type="button"
 				>
 					Activities

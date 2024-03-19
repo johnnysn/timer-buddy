@@ -52,7 +52,7 @@
 							message="Are you sure to delete this event?"
 							textFirstButton="Cancel"
 							textSecondButton="Delete"
-							buttonClass="text-red-600"
+							buttonClass="text-accent"
 							on:modalReturn={(evt) => handleDeleteAction(evt.detail.selection, event)}
 						>
 							<Trash />

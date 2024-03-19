@@ -40,7 +40,7 @@
 
 	<div class="w-full flex justify-around">
 		<a href={`/activities/${activity?.id}`} class="w-1/3 md:w-auto">
-			<Button class="bg-secondary-600 hover:bg-secondary-500 text-white" type="button">
+			<Button class="secondary text-white" type="button">
 				Cancel
 			</Button>
 		</a>

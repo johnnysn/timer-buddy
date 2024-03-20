@@ -42,7 +42,7 @@
 
 	{#if showForm}
 		<div
-			transition:slide={{ delay: 0, duration: 300, easing: quintOut, axis: 'x' }}
+			in:slide={{ delay: 0, duration: 300, easing: quintOut, axis: 'x' }}
 			class="flex flex-col gap-2 mt-2 mb-6 max-w-screen-md border rounded-lg border-gray-200 dark:border-gray-700 px-4 pt-4 pb-2"
 		>
 			<TextInput

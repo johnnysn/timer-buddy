@@ -23,7 +23,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="/" class="flex items-center gap-1">
+					<a href="/plans" class="flex items-center gap-1">
 						<button aria-label="Plans">
 							<NotepadText class="size-6 md:size-5" />
 						</button>

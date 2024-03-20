@@ -34,7 +34,7 @@
 	<h1 class="modal-title">{title}</h1>
 	<p class="text-center">{message}</p>
 	<div class="flex items-center justify-around">
-		<Button type="button" on:click={() => getModal(modalID).close('no')} class="danger">
+		<Button type="button" on:click={() => getModal(modalID).close('no')} class="secondary">
 			{textFirstButton}
 		</Button>
 		{#if textSecondButton !== ''}

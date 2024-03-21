@@ -1,7 +1,10 @@
 export interface Plan {
-  id: string,
-  name: string,
-  description: string,
-  activitiesIds: string[],
-  active: boolean
+	id: string;
+	name: string;
+	description: string;
+	activities: {
+		id: string;
+		activityId: string;
+	}[];
+	active: boolean;
 }

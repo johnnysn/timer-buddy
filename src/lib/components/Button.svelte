@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { HTMLButtonAttributes } from 'svelte/elements';
+	import { twMerge } from 'tailwind-merge';
 
 	interface $$Props extends HTMLButtonAttributes {}
 
@@ -15,7 +16,10 @@
 
 <button
 	{...$$restProps}
-	class={`mt-6 rounded-full transition-colors duration-300 px-6 py-2 disabled:bg-gray-50 disabled:text-gray-500 ${clazz || ''}`}
+	class={twMerge(
+		`mt-6 rounded-full transition-colors duration-300 px-6 py-2 disabled:bg-gray-50 disabled:text-gray-500`,
+		clazz
+	)}
 	on:click
 >
 	<slot />

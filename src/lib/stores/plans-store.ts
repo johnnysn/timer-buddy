@@ -4,6 +4,7 @@ import { writable, type Updater } from 'svelte/store';
 import { ZodError, z } from 'zod';
 import { addToast } from './toast-store';
 import { browser } from '$app/environment';
+import { endOfDay } from 'date-fns';
 
 export function createPlansStore() {
 	const actualStore = writable<Plan[]>([], (set) => {
@@ -51,7 +52,8 @@ export function createPlansStore() {
 				name,
 				description,
 				active: false,
-				activities: []
+				activities: [],
+				executions: []
 			};
 
 			return [...curr, newOne];
@@ -121,6 +123,48 @@ export function createPlansStore() {
 		});
 	}
 
+	function start(id: string, target: Date) {
+		update((curr) => {
+			const plan = curr.find((p) => p.id === id);
+
+			if (!plan) {
+				return curr;
+			}
+
+			const now = new Date();
+			plan.executions
+				.filter((e) => !e.end)
+				.forEach((e) => {
+					const eod = endOfDay(e.start);
+					e.end = now.getTime() < eod.getTime() ? now : eod;
+				});
+			plan.executions.push({
+				start: new Date(),
+				target
+			});
+			return [...curr];
+		});
+	}
+
+	function finish(id: string) {
+		update((curr) => {
+			const plan = curr.find((p) => p.id === id);
+
+			if (!plan) {
+				return curr;
+			}
+
+			const now = new Date();
+			plan.executions
+				.filter((e) => !e.end)
+				.forEach((e) => {
+					const eod = endOfDay(e.start);
+					e.end = now.getTime() < eod.getTime() ? now : eod;
+				});
+			return [...curr];
+		});
+	}
+
 	return {
 		subscribe: actualStore.subscribe,
 		add,
@@ -128,7 +172,9 @@ export function createPlansStore() {
 		delete: deletePlan,
 		addActivity,
 		removeActivity,
-		updateArrangement
+		updateArrangement,
+		start,
+		finish
 	};
 }
 

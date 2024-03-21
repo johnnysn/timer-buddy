@@ -45,17 +45,16 @@
 		<tbody>
 			{#each events as event (event.id)}
 				<tr class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-300">
-					<td class="flex justify-center gap-2">
+					<td class="flex justify-center items-center gap-2">
 						<MyModal
 							modalID={`confirmation-with-icon-${event.id}`}
 							title="Deletion confirmation"
 							message="Are you sure to delete this event?"
 							textFirstButton="Cancel"
 							textSecondButton="Delete"
-							buttonClass="text-accent"
 							on:modalReturn={(evt) => handleDeleteAction(evt.detail.selection, event)}
 						>
-							<Trash />
+							<span class="text-accent"><Trash /></span>
 						</MyModal>
 						<a href={`/activities/${activity.id}/events/${event.id}`}>
 							<Edit />

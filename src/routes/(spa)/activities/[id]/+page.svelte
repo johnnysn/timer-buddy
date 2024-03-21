@@ -6,6 +6,7 @@
 	import { activities } from '$lib/stores/activities-store';
 	import type { Activity } from '$lib/types/activity';
 	import intervalFormatter from '$lib/utils/interval-formatter';
+	import { Edit, Trash2 } from 'lucide-svelte';
 	import EventsTable from './EventsTable.svelte';
 
 	let activity: Activity | undefined;
@@ -34,19 +35,24 @@
 
 	<div class="w-full flex justify-end items-center gap-4">
 		<a href={`/activities/${activity.id}/edit`}>
-			<Button class="primary">Edit</Button>
+			<Button class="primary px-4 flex items-center gap-1 text-sm">
+				<Edit class="size-4" />
+				<span>Edit</span>
+			</Button>
 		</a>
 
 		<MyModal
 			modalID="confirmation-dialog-delete-activity"
-			buttonText="Delete"
 			title="Deletion confirmation"
 			message="This will delete the activity and all its measured events. Are you sure to delete it?"
 			textFirstButton="Cancel"
 			textSecondButton="Delete"
-			buttonClass="secondary"
+			buttonClass="secondary px-4 flex items-center gap-1 text-sm"
 			on:modalReturn={(event) => handleDeleteActivity(event.detail.selection)}
-		/>
+		>
+			<Trash2 class="size-4" />
+			<span>Delete</span>
+		</MyModal>
 	</div>
 
 	<p class="mt-4 mb-4"><strong>Measurement events for this activity:</strong></p>

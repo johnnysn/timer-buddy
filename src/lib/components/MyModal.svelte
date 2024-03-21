@@ -24,6 +24,10 @@
 	<Button class={buttonClass} type="button" on:click={modalComunication}>
 		{buttonText}
 	</Button>
+{:else if buttonClass !== ''}
+	<Button class={buttonClass} type="button" on:click={modalComunication}>
+		<slot />
+	</Button>
 {:else}
 	<button type="button" on:click={modalComunication} class={buttonClass}>
 		<slot />

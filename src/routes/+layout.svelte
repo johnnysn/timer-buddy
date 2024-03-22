@@ -1,6 +1,5 @@
 <script>
 	import '../app.css';
-	import Header from './Header.svelte';
 	import Toasts from '$lib/components/Toasts.svelte';
 </script>
 
@@ -15,17 +14,6 @@
 </svelte:head>
 
 <div class={`font-standard antialiased`}>
-	<div
-		class="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white transition-colors duration-300 flex flex-col"
-	>
-		<Header />
-
-		<Toasts />
-
-		<div class="w-full flex justify-center flex-1">
-			<slot />
-		</div>
-
-		<footer class="py-6 text-center">Copyright &copy; {new Date().getFullYear()}</footer>
-	</div>
+	<Toasts />
+	<slot />
 </div>

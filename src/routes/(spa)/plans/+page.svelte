@@ -24,9 +24,9 @@
 	{/if}
 
 	{#if !showForm}
-		<div class="w-full mb-4 flex justify-between">
-			<button on:click={() => (showForm = true)}>
-				<PlusCircle color="green" />
+		<div class="w-full mb-4 flex justify-end">
+			<button on:click={() => (showForm = true)} class="text-teal-600">
+				<PlusCircle class="size-8" />
 			</button>
 		</div>
 	{/if}

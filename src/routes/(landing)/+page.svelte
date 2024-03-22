@@ -15,7 +15,7 @@
 				href="/activities"
 				class="rounded-full px-6 py-3 text-white bg-main-dark hover:bg-main transition-colors duration-300 mb-4 md:mb-6"
 			>
-				Start now
+				Get started
 			</a>
 		</div>
 

@@ -7,7 +7,6 @@
 	import { fade } from 'svelte/transition';
 	import { slide } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
-	
 
 	let showForm = false;
 	let activityName = '';
@@ -31,11 +30,9 @@
 	{/if}
 
 	{#if !showForm}
-		<div 
-			class="w-full mb-4 flex justify-between"
-		>
-			<button on:click={toggleShowForm}>
-				<PlusCircle color="green" />
+		<div class="w-full mb-4 flex justify-end">
+			<button on:click={toggleShowForm} class="text-teal-600">
+				<PlusCircle class="size-8" />
 			</button>
 		</div>
 	{/if}
@@ -68,7 +65,10 @@
 
 	<ul class="flex flex-col gap-2">
 		{#each $activities as activity (activity.id)}
-			<li class="item-container px-2 w-full max-w-screen-md" transition:fade={{ delay: 250, duration: 300 }}>
+			<li
+				class="item-container px-2 w-full max-w-screen-md"
+				transition:fade={{ delay: 250, duration: 300 }}
+			>
 				<ActivityControl {activity} />
 			</li>
 		{/each}

@@ -16,21 +16,8 @@
 </script>
 
 <div class="flex flex-col">
-	<div class="w-full flex flex-row">
-		<div class="w-3/12 flex justify-start items-center">
-			<a href="/activities">
-				<button
-					class="rounded-full md:w-auto h-6 px-2 py-0 bg-main text-gray-50 hover:bg-main-hover transition-colors duration-300 text-sm"
-					type="button"
-				>
-					Activities
-				</button>
-			</a>
-		</div>
-		<h2 class="w-9/12 flex justify-start md:justify-center text-3xl mb-4 font-semibold font-title">
-			{activity?.name}
-		</h2>
-	</div>
-
+	<h2 class="text-3xl mb-4 font-semibold font-title w-full text-center">
+		{activity?.name}
+	</h2>
 	<slot />
 </div>

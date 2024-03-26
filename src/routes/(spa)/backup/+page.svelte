@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { read } from "$app/server";
 	import Button from "$lib/components/Button.svelte";
 	import { activitySchema } from "$lib/schemas/activity-schema";
 	import { planSchema } from "$lib/schemas/plan-schema";

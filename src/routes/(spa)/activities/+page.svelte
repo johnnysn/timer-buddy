@@ -23,7 +23,7 @@
 </script>
 
 <div class="flex flex-col">
-	<h1 class="w-full flex justify-center text-2xl mb-1 font-semibold font-title">My activities</h1>
+	<h2 class="w-full text-center text-2xl mb-1 font-semibold font-title">My activities</h2>
 
 	{#if $activities.length === 0}
 		<p class="w-full flex justify-center">You have no activities</p>

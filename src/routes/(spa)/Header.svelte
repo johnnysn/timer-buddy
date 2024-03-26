@@ -1,5 +1,5 @@
 <script>
-	import { Activity, NotepadText } from 'lucide-svelte';
+	import { Activity, DatabaseBackup, NotepadText } from 'lucide-svelte';
 	import Toggle from '$lib/components/Toggle.svelte';
 	import { darkModeStore } from '$lib/stores/dark-mode-store';
 </script>
@@ -29,7 +29,7 @@
 		<div class="flex items-center">
 			<Toggle bind:checked={$darkModeStore} />
 
-			<ul class="ml-6 flex items-center gap-2 md:gap-4">
+			<ul class="ml-6 flex items-center gap-3 md:gap-4">
 				<li>
 					<a href="/activities" class="flex items-center gap-1">
 						<button aria-label="Activities">
@@ -46,7 +46,14 @@
 						<span class="font-medium hidden md:block">Plans</span>
 					</a>
 				</li>
-				<li></li>
+				<li>
+					<a href="/backup" class="flex items-center gap-1">
+						<button aria-label="Plans">
+							<DatabaseBackup class="size-6 md:size-5" />
+						</button>
+						<span class="font-medium hidden md:block">Backup</span>
+					</a>
+				</li>
 			</ul>
 		</div>
 	</div>

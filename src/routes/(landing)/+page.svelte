@@ -19,6 +19,6 @@
 			</a>
 		</div>
 
-		<img src="/Hero.png" alt="Timer Buddy" width="980" height="924" class="w-full md:w-3/5" />
+		<img src="/Hero-No-BG.png" alt="Timer Buddy" width="980" height="924" class="w-full md:w-3/5" />
 	</div>
 </div>

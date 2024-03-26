@@ -193,6 +193,12 @@ export function createActivitiesStore() {
 		});
 	}
 
+	function load(activities: Activity[]) {
+		update(curr => {
+			return activities;
+		});
+	}
+
 	return {
 		subscribe: actualStore.subscribe,
 		add,
@@ -202,7 +208,8 @@ export function createActivitiesStore() {
 		stop,
 		cancel,
 		deleteEvent,
-		editEvent
+		editEvent,
+		load
 	};
 }
 

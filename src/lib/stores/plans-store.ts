@@ -165,6 +165,12 @@ export function createPlansStore() {
 		});
 	}
 
+	function load(plans: Plan[]) {
+		update(curr => {
+			return plans;
+		});
+	}
+
 	return {
 		subscribe: actualStore.subscribe,
 		add,
@@ -174,7 +180,8 @@ export function createPlansStore() {
 		removeActivity,
 		updateArrangement,
 		start,
-		finish
+		finish,
+		load
 	};
 }
 

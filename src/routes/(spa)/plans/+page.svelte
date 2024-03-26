@@ -38,7 +38,7 @@
 		>
 			<TextInput
 				name="name"
-				placeholder="New activity"
+				placeholder="New plan"
 				label=""
 				required
 				blurAtStart={true}

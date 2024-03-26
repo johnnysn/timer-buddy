@@ -85,7 +85,7 @@
 			on:modalReturn={(event) => handleDeletePlan(event.detail.selection)}
 		>
 			<Trash2 class="size-4" />
-			<span>Edit</span>
+			<span>Delete</span>
 		</MyModal>
 	</div>
 

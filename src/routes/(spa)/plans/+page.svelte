@@ -2,7 +2,7 @@
 	import Button from '$lib/components/Button.svelte';
 	import TextInput from '$lib/components/TextInput.svelte';
 	import { plans } from '$lib/stores/plans-store';
-	import { PlusCircle } from 'lucide-svelte';
+	import { Info, PlusCircle } from 'lucide-svelte';
 	import { quintOut } from 'svelte/easing';
 	import { blur, fade, slide } from 'svelte/transition';
 
@@ -61,7 +61,12 @@
 		{#each $plans as plan (plan.id)}
 			<li class="item-container w-full" transition:fade={{ delay: 250, duration: 300 }}>
 				<a href={`/plans/${plan.id}`} class="py-4 px-2 w-full h-full block">
-					{plan.name}
+					<div class="w-full flex items-center">
+						<button class="mr-2 text-main">
+							<Info />
+						</button>
+						<span>{plan.name}</span>
+					</div>
 				</a>
 			</li>
 		{/each}

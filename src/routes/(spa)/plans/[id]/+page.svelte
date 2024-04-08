@@ -10,6 +10,7 @@
 	import { Edit, PlayCircle, PlusCircle, Trash2 } from 'lucide-svelte';
 	import DndActivityList from './DndActivityList.svelte';
 	import PlanTimer from './PlanTimer.svelte';
+	import intervalFormatter from '$lib/utils/interval-formatter';
 
 	let plan: Plan | undefined;
 	let execution: PlanExecution | undefined;
@@ -55,9 +56,13 @@
 	}
 </script>
 
-<p>
+<p class="flex flex-col justify-items-center">
 	<strong class="mr-2">Description: </strong>
 	<span>{plan?.description || 'No description for this plan'}</span>
+</p>
+<p class="flex flex-row justify-items-center">
+	<strong class="mr-2">Average duration: </strong>
+	<span>{intervalFormatter.format(averageDuration) || 'No activities added to this plan yet'}</span>
 </p>
 
 {#if execution}
@@ -92,9 +97,11 @@
 	<h4 class="mt-4 mb-4 font-title font-medium text-lg">Activities</h4>
 	<div class="w-full mb-4 flex justify-start">
 		<a href={`/plans/${plan?.id}/add-activity`}>
-			<PlusCircle color="green" />
+			<div class="flex flex-row">
+				<PlusCircle color="green" />
+				<span class="ml-2 text-sm">Add activity</span>
+			</div>
 		</a>
-		<span class="ml-2 text-sm">Add activity</span>
 	</div>
 
 	{#if planActivities.length === 0}

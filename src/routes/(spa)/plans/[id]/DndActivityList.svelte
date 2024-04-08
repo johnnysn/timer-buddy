@@ -36,12 +36,12 @@
 		>
 			<h3 class="font-medium">
 				{a.activity.name}
+				<span>
+					({a.activity.averageDuration
+						? `~${intervalFormatter.format(a.activity.averageDuration)}`
+						: ''})
+				</span>
 			</h3>
-			<span class="text-xs">
-				{a.activity.averageDuration
-					? `~${intervalFormatter.format(a.activity.averageDuration)}`
-					: ''}
-			</span>
 			<button
 				type="button"
 				class="text-accent"

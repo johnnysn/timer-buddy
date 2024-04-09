@@ -37,9 +37,9 @@
 			<h3 class="font-medium">
 				{a.activity.name}
 				<span>
-					({a.activity.averageDuration
-						? `~${intervalFormatter.format(a.activity.averageDuration)}`
-						: ''})
+					{a.activity.averageDuration
+						? `(~${intervalFormatter.format(a.activity.averageDuration)})`
+						: ''}
 				</span>
 			</h3>
 			<button

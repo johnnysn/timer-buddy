@@ -14,23 +14,23 @@
 </script>
 
 <div class="w-full max-w-screen-md border rounded-lg border-gray-200 dark:border-gray-700 p-4 mt-4">
-	<div class="flex flex-row mb-1"><strong class="mr-2">Now:</strong><Clock /></div>
+	<div class="flex flex-row pl-2"><strong class="mr-2">Now:</strong><Clock /></div>
 	<p>
-		<span>
-			<strong>Target time:</strong>
-			{dateFormatter.format(planExecution.target)}
-		</span>
-	</p>
-	<p>
-		<span class="flex flex-row mt-1">
-			<strong class="mr-2">Expected duration:</strong>
+		<span class="flex flex-row mt-1 pl-2">
+			<strong class="mr-2">Plan duration:</strong>
 			{intervalFormatter.format(averageDuration)}
 		</span>
 	</p>
-	<p>
+	<p class="border rounded-lg border-gray-200 dark:border-gray-700 p-2 my-2 bg-main-light dark:bg-main-dark">
 		<span class="flex flex-row mt-1">
 			<strong class="pr-2">Remaining time:</strong>
 			<Countdown targetTime={planExecution.target} {averageDuration} />
+		</span>
+	</p>
+	<p>
+		<span class="flex flex-row mt-1 pl-2">
+			<strong class="pr-2">Target time:</strong>
+			<span>{dateFormatter.format(planExecution.target)}</span>
 		</span>
 	</p>
 

@@ -11,6 +11,7 @@
 	const dispatch = createEventDispatcher();
 	type ItemType = { id: string; activity: Activity };
 	export let activities: ItemType[];
+	export let isExecuting: boolean = false;
 
 	const handleConsider = (evt: CustomEvent<DndEvent<ItemType>>) => {
 		activities = evt.detail.items;
@@ -42,15 +43,17 @@
 						: ''}
 				</span>
 			</h3>
-			<button
-				type="button"
-				class="text-accent"
-				on:click={() => {
-					dispatch('delete', { id: a.id });
-				}}
-			>
-				<Trash2 />
-			</button>
+			{#if !isExecuting}
+				<button
+					type="button"
+					class="text-accent"
+					on:click={() => {
+						dispatch('delete', { id: a.id });
+					}}
+				>
+					<Trash2 />
+				</button>
+			{/if}
 		</li>
 	{/each}
 </ul>

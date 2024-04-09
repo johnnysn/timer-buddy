@@ -93,8 +93,10 @@
 			<span>Delete</span>
 		</MyModal>
 	</div>
+{/if}
 
-	<h4 class="mt-4 mb-4 font-title font-medium text-lg">Activities</h4>
+<h4 class="mt-4 mb-4 font-title font-medium text-lg">Activities</h4>
+{#if !execution}
 	<div class="w-full mb-4 flex justify-start">
 		<a href={`/plans/${plan?.id}/add-activity`}>
 			<div class="flex flex-row">
@@ -103,14 +105,15 @@
 			</div>
 		</a>
 	</div>
+{/if}
 
-	{#if planActivities.length === 0}
-		<p>No activities added to this plan yet.</p>
-	{:else}
-		<DndActivityList
-			activities={planActivities}
-			on:delete={(evt) => handleDeleteActivity(evt.detail.id)}
-			on:change={(evt) => handleOrderChanged(evt.detail.arrangement)}
-		/>
-	{/if}
+{#if planActivities.length === 0}
+	<p>No activities added to this plan yet.</p>
+{:else}
+	<DndActivityList
+		activities={planActivities}
+		isExecuting={execution ? true : false}
+		on:delete={(evt) => handleDeleteActivity(evt.detail.id)}
+		on:change={(evt) => handleOrderChanged(evt.detail.arrangement)}
+	/>
 {/if}

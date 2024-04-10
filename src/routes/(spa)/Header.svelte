@@ -27,9 +27,11 @@
 		</a>
 
 		<div class="flex items-center">
-			<Toggle bind:checked={$darkModeStore} />
+			<div class="flex items-center border-2 rounded-full border-gray-300 dark:border-gray-800 p-3">
+				<Toggle bind:checked={$darkModeStore} />
+			</div>
 
-			<ul class="ml-6 flex items-center gap-3 md:gap-4">
+			<ul class="ml-2 md:ml-6 flex items-center gap-3 md:gap-4">
 				<li>
 					<a href="/activities" class="flex items-center gap-1">
 						<button aria-label="Activities">

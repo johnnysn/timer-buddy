@@ -77,9 +77,9 @@
 	</div>
 
 	<div class="flex justify-around items-center">
-		<Button class="primary" type="submit">Start</Button>
 		<Button class="secondary" type="button" on:click={() => goto(`/plans/${plan?.id}`)}>
 			Cancel
 		</Button>
+		<Button class="primary" type="submit">Start</Button>
 	</div>
 </form>

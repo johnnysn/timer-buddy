@@ -8,14 +8,14 @@
 				> <br />
 				<span class="text-4xl md:text-5xl lg:text-6xl">your time</span>
 			</h1>
-			<p class="mb-4 px-6 text-center md:text-lg">
+			<p class="mb-4 px-4 text-center md:text-lg">
 				Learn how much time you spend on your daily activities, and start making great plans
 			</p>
 			<a
 				href="/activities"
 				class="rounded-full px-6 py-3 text-white bg-main-dark hover:bg-main transition-colors duration-300 mb-4 md:mb-6"
 			>
-				Get started
+				Start now
 			</a>
 		</div>
 

@@ -5,7 +5,7 @@
 	import { type Event } from '$lib/types/event';
 	import dateFormatter from '$lib/utils/date-formatter';
 	import intervalFormatter from '$lib/utils/interval-formatter';
-	import { Edit, Trash } from 'lucide-svelte';
+	import { Edit, Trash2 } from 'lucide-svelte';
 
 	export let activity: Activity;
 
@@ -54,7 +54,7 @@
 							textSecondButton="Delete"
 							on:modalReturn={(evt) => handleDeleteAction(evt.detail.selection, event)}
 						>
-							<span class="text-accent"><Trash /></span>
+							<span class="text-accent"><Trash2 /></span>
 						</MyModal>
 						<a href={`/activities/${activity.id}/events/${event.id}`}>
 							<Edit />

@@ -6,6 +6,7 @@
 	import Countdown from '$lib/components/Countdown.svelte';
 	import type { PlanExecution } from '$lib/types/plan';
 	import { createEventDispatcher } from 'svelte';
+	import { darkModeStore } from '$lib/stores/dark-mode-store';
 
 	const dispatch = createEventDispatcher();
 
@@ -41,13 +42,17 @@
 {#if !linearView}
 	<div class="flex flex-row">
 		<div class="max-w-11 max-h-72 md:max-h-64">
-			<img src="/time_arrow.png" alt="Arrow time"  style="height: auto; max-height: 100%;" />
+			{#if $darkModeStore}
+				<img src="/time_arrow-dark.png" alt="Arrow time"  style="height: auto; max-height: 100%;" />
+			{:else}
+				<img src="/time_arrow.png" alt="Arrow time"  style="height: auto; max-height: 100%;" />
+			{/if}
 		</div>
 		<div class="w-full">
 			<div class="flex flex-row pl-2 py-2 border border-gray-200"  ><strong class="mr-2">Now:</strong><Clock /></div>
 
 			<div class="border-t-2 border-x-2 border-gray-200 mt-2 bg-main-light dark:bg-main-dark py-2">
-				<div class="pl-20 md:pl-60"><img src="/hourglass.webp" width="25" height="25" /></div>
+				<div class="pl-20 md:pl-60"><img src="/hourglass.webp" alt="Hourglass" width="25" height="25" /></div>
 			</div>
 			<div class="flex flex-row justify-between w-full">
 				<div class="flex justify-center border-r-2 border-y-2 border-gray-200 w-1/2 md:w-3/4">
@@ -69,7 +74,7 @@
 				</div>
 			</div>
 			<div class="border-b-2 border-x-2 border-gray-200 bg-main-light dark:bg-main-dark mb-2 py-2">
-				<div class="pl-20 md:pl-60"><img src="/hourglass.webp" width="25" height="25" /></div>
+				<div class="pl-20 md:pl-60"><img src="/hourglass.webp" alt="Hourglass" width="25" height="25" /></div>
 			</div>
 
 			<p class="border border-gray-200">

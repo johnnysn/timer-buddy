@@ -36,16 +36,26 @@
 	>
 		<thead class="uppercase">
 			<tr class="border-b">
-				<th></th>
 				<th class="py-2">Duration</th>
 				<th class="py-2">Started at</th>
 				<th class="py-2">Finished at</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			{#each events as event (event.id)}
 				<tr class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-300">
-					<td class="flex justify-center items-center gap-2">
+					<td class="text-center">{getDuration(event)}</td>
+					<td class="text-center">
+						{dateFormatter.formatShort(event.start)}
+					</td>
+					<td class="text-center">
+						{event.end ? dateFormatter.formatShort(event.end) : 'ongoing...'}
+					</td>
+					<td class="flex justify-center items-center gap-4">
+						<a href={`/activities/${activity.id}/events/${event.id}`}>
+							<Edit />
+						</a>
 						<MyModal
 							modalID={`confirmation-with-icon-${event.id}`}
 							title="Deletion confirmation"
@@ -56,16 +66,6 @@
 						>
 							<span class="text-accent"><Trash2 /></span>
 						</MyModal>
-						<a href={`/activities/${activity.id}/events/${event.id}`}>
-							<Edit />
-						</a>
-					</td>
-					<td class="text-center">{getDuration(event)}</td>
-					<td class="text-center">
-						{dateFormatter.formatShort(event.start)}
-					</td>
-					<td class="text-center">
-						{event.end ? dateFormatter.formatShort(event.end) : 'ongoing...'}
 					</td>
 				</tr>
 			{/each}

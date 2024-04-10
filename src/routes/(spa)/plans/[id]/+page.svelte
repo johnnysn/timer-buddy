@@ -69,11 +69,13 @@
 	<PlanTimer planExecution={execution} {averageDuration} on:finish={finish} />
 {:else}
 	<div class="w-full flex justify-end gap-2 mb-4">
-		<a href={`/plans/${plan?.id}/execute`}>
-			<Button class="flex items-center gap-2 success text-sm px-4">
-				<PlayCircle class="size-4" /> <span>Execute</span>
-			</Button>
-		</a>
+		{#if planActivities.length > 0}
+			<a href={`/plans/${plan?.id}/execute`}>
+				<Button class="flex items-center gap-2 success text-sm px-4">
+					<PlayCircle class="size-4" /> <span>Execute</span>
+				</Button>
+			</a>
+		{/if}
 		<a href={`/plans/${plan?.id}/edit`}>
 			<Button type="button" class="primary flex items-center gap-2 text-sm px-4">
 				<Edit class="size-4" />

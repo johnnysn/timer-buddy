@@ -21,7 +21,9 @@
 		let total = 0;
 		planActivities.forEach(element => {
 			let activity = $activities.find((a) => a.id === element.activityId);
-			total += activity!.averageDuration!;
+			if (activity!.averageDuration !== undefined) {
+				total += activity!.averageDuration!;
+			}
 		});
 		return intervalFormatter.format(total);
 	}
@@ -77,10 +79,10 @@
 							<Info />
 						</button>
 						<span>
-							{plan.name} 
+							{plan.name} <br />
 							{#if plan.activities.length > 0}
-								(~{ planAverageDuration(plan.activities)} -
-								{plan.activities.length} {plan.activities.length === 1 ? 'activity' : 'activities'})
+								~{ planAverageDuration(plan.activities)} -
+								{plan.activities.length} {plan.activities.length === 1 ? 'activity' : 'activities'}
 							{/if}
 						</span>
 					</div>

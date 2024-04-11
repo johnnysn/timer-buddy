@@ -5,6 +5,8 @@
 	import { Info, PlusCircle } from 'lucide-svelte';
 	import { quintOut } from 'svelte/easing';
 	import { blur, fade, slide } from 'svelte/transition';
+	import { activities } from '$lib/stores/activities-store';
+	import intervalFormatter from '$lib/utils/interval-formatter';
 
 	let showForm = false;
 	let planName = '';
@@ -13,6 +15,15 @@
 		plans.add(planName, '');
 		planName = '';
 		showForm = false;
+	}
+
+	function planAverageDuration(planActivities: {id: string; activityId: string}[]) {
+		let total = 0;
+		planActivities.forEach(element => {
+			let activity = $activities.find((a) => a.id === element.activityId);
+			total += activity!.averageDuration!;
+		});
+		return intervalFormatter.format(total);
 	}
 </script>
 
@@ -65,7 +76,13 @@
 						<button class="mr-2 text-main">
 							<Info />
 						</button>
-						<span>{plan.name}</span>
+						<span>
+							{plan.name} 
+							{#if plan.activities.length > 0}
+								(~{ planAverageDuration(plan.activities)} -
+								{plan.activities.length} {plan.activities.length === 1 ? 'activity' : 'activities'})
+							{/if}
+						</span>
 					</div>
 				</a>
 			</li>

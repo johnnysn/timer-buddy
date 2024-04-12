@@ -5,6 +5,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import { flip } from 'svelte/animate';
 	import type { Activity } from '$lib/types/activity';
+	import MyModal from '$lib/components/MyModal.svelte';
 
 	const flipDurationMs = 200;
 
@@ -44,15 +45,22 @@
 				</span>
 			</h3>
 			{#if !isExecuting}
-				<button
-					type="button"
-					class="text-accent"
-					on:click={() => {
-						dispatch('delete', { id: a.id });
-					}}
+				<MyModal
+					modalID={`confirmation-dialog-delete-plan-activity-${a.id}`}
+					title="Deletion confirmation"
+					message="Are you sure to delete this activity of the plan?"
+					textFirstButton="Cancel"
+					textSecondButton="Delete"
+					on:modalReturn={
+						(event) => {
+							if (event.detail.selection === 'yes') {
+								dispatch('delete', { id: a.id });
+							}
+						}
+					}
 				>
-					<Trash2 />
-				</button>
+					<span class="text-accent"><Trash2 /></span>
+				</MyModal>
 			{/if}
 		</li>
 	{/each}

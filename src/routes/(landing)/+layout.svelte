@@ -1,12 +1,9 @@
 <script lang="ts">
-	import { darkModeStore } from '$lib/stores/dark-mode-store';
 	import Header from './Header.svelte';
-
-	$: darkModeClass = $darkModeStore ? 'dark' : '';
 </script>
 
-<div class={darkModeClass}>
-	<div class="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white transition-colors duration-300 flex flex-col">
+<div>
+	<div class="min-h-screen bg-white text-black flex flex-col">
 		<Header />
 
 		<div class="w-full flex justify-center flex-1">

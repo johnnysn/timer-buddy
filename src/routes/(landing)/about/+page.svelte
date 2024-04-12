@@ -1,4 +1,4 @@
-<div class="flex flex-col w-full max-w-screen-md mt-2">
+<div class="flex flex-col w-full max-w-screen-md mt-2 px-4 md:px-6">
 	<h1 class="font-title text-2xl font-bold mb-4">About Timer Buddy</h1>
 
 	<div class="mb-4">
@@ -37,8 +37,12 @@
 	<div class="mb-4">
 		<h2 class="text-xl font-title font-semibold mb-1">Creators</h2>
 		<p class="font-light font-lg">
-			This software was created and is maintained by <a href="https://github.com/carlosladeira">Carlos Ladeira</a> and 
-			<a href="https://github.com/johnnysn">Johnny Moreira</a>. Feel free to provide us with feedback about the project anytime.
+			This software was created and is maintained by <a href="https://github.com/carlosladeira"
+				>Carlos Ladeira</a
+			>
+			and
+			<a href="https://github.com/johnnysn">Johnny Moreira</a>. Feel free to provide us with
+			feedback about the project anytime.
 		</p>
 	</div>
 </div>

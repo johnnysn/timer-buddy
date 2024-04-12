@@ -8,6 +8,7 @@
 	import { goto } from '$app/navigation';
 	import { activities } from '$lib/stores/activities-store';
 	import { addToast } from '$lib/stores/toast-store';
+	import intervalFormatter from '$lib/utils/interval-formatter';
 
 	let plan: Plan | undefined;
 	let averageDuration = 0;
@@ -61,20 +62,30 @@
 	class="w-full max-w-screen-md border rounded-lg border-gray-200 dark:border-gray-700 p-4 mt-4"
 	on:submit={submit}
 >
-	<div class="flex flex-row mb-1">
-		<span class="mr-2">Now:</span>
-		<Clock />
+	<div class="text-center mb-6 md:mx-16">
+		<strong>Choose a target time in the future so that you can know the remaining free time from now regarding the plan duration</strong>
+	</div>
+	<div class="pl-10 md:pl-60">
+		<div class="flex flex-row mb-1">
+			<span class="mr-32">Now:</span>
+			<Clock />
+		</div>
+		<div class="flex flex-row mb-1">
+			<span class="mr-16">Plan duration:</span>
+			<span>{intervalFormatter.format(averageDuration)}</span>
+		</div>
+		<div class="flex flex-row mb-4">
+			<p class="mr-3">Now + Plan duration:</p>
+			<Clock secondsToAdd={averageDuration} />
+		</div>
+
+		<div class="w-full max-w-[140px] mb-2">
+			<input type="hidden" name="id" value={plan?.id} />
+			<Input name="target" type="time" label="Target time" required />
+		</div>
+		<p class="text-xs">Must be greater than "Now + Plan duration"</p>
 	</div>
 
-	<div class="w-full max-w-[140px] mb-2">
-		<input type="hidden" name="id" value={plan?.id} />
-		<Input name="target" type="time" label="Target time" required />
-	</div>
-	<p class="text-xs">Must be greater than "Now + Plan duration"</p>
-	<div class="flex flex-row text-xs">
-		<p class="pr-2">Now + Plan duration:</p>
-		<Clock secondsToAdd={averageDuration} />
-	</div>
 
 	<div class="flex justify-around items-center">
 		<Button class="secondary" type="button" on:click={() => goto(`/plans/${plan?.id}`)}>

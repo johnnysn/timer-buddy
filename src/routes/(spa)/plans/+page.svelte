@@ -4,7 +4,7 @@
 	import { plans } from '$lib/stores/plans-store';
 	import { Info, PlusCircle } from 'lucide-svelte';
 	import { quintOut } from 'svelte/easing';
-	import { blur, fade, slide } from 'svelte/transition';
+	import { fade, slide } from 'svelte/transition';
 	import { activities } from '$lib/stores/activities-store';
 	import intervalFormatter from '$lib/utils/interval-formatter';
 
@@ -17,9 +17,9 @@
 		showForm = false;
 	}
 
-	function planAverageDuration(planActivities: {id: string; activityId: string}[]) {
+	function planAverageDuration(planActivities: { id: string; activityId: string }[]) {
 		let total = 0;
-		planActivities.forEach(element => {
+		planActivities.forEach((element) => {
 			let activity = $activities.find((a) => a.id === element.activityId);
 			if (activity!.averageDuration !== undefined) {
 				total += activity!.averageDuration!;
@@ -81,8 +81,9 @@
 						<span>
 							{plan.name} <br />
 							{#if plan.activities.length > 0}
-								~{ planAverageDuration(plan.activities)} -
-								{plan.activities.length} {plan.activities.length === 1 ? 'activity' : 'activities'}
+								~{planAverageDuration(plan.activities)} -
+								{plan.activities.length}
+								{plan.activities.length === 1 ? 'activity' : 'activities'}
 							{/if}
 						</span>
 					</div>

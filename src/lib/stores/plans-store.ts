@@ -5,6 +5,7 @@ import { ZodError, z } from 'zod';
 import { addToast } from './toast-store';
 import { browser } from '$app/environment';
 import { endOfDay } from 'date-fns';
+import { activities } from './activities-store';
 
 export function createPlansStore() {
 	const actualStore = writable<Plan[]>([], (set) => {
@@ -44,6 +45,21 @@ export function createPlansStore() {
 			return newData;
 		});
 	}
+
+	activities.subscribe((acts) => {
+		update((curr) => {
+			const activitiesIds = new Set(acts.map((a) => a.id));
+			curr.forEach((plan) => {
+				const filtered = plan.activities.filter((a) => activitiesIds.has(a.activityId));
+
+				if (filtered.length < plan.activities.length) {
+					plan.activities = filtered;
+				}
+			});
+
+			return curr;
+		});
+	});
 
 	function add(name: string, description: string) {
 		update((curr) => {
@@ -166,7 +182,7 @@ export function createPlansStore() {
 	}
 
 	function load(plans: Plan[]) {
-		update(curr => {
+		update(() => {
 			return plans;
 		});
 	}

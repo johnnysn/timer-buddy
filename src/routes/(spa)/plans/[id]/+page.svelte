@@ -11,7 +11,7 @@
 	import DndActivityList from './DndActivityList.svelte';
 	import PlanTimer from './PlanTimer.svelte';
 	import intervalFormatter from '$lib/utils/interval-formatter';
-	import { addMinutes, endOfDay } from 'date-fns';
+	import { endOfDay } from 'date-fns';
 	import { onDestroy, onMount } from 'svelte';
 
 	let plan: Plan | undefined;
@@ -23,21 +23,20 @@
 	$: {
 		plan = $plans.find((p) => p.id === $page.params.id);
 
-		const validIds = new Set($activities.map((a) => a.id));
-		planActivities =
-			plan?.activities
-				.filter((a) => validIds.has(a.activityId))
-				.map((a) => ({
+		if (plan) {
+			planActivities =
+				plan.activities.map((a) => ({
 					id: a.id,
 					activity: $activities.find((actv) => actv.id === a.activityId)!
 				})) ?? [];
 
-		averageDuration = planActivities.reduce(
-			(total, a) => total + (a.activity.averageDuration ?? 0),
-			0
-		);
+			averageDuration = planActivities.reduce(
+				(total, a) => total + (a.activity.averageDuration ?? 0),
+				0
+			);
 
-		execution = plan?.executions.find((e) => !e.end);
+			execution = plan?.executions.find((e) => !e.end);
+		}
 	}
 
 	onMount(() => {

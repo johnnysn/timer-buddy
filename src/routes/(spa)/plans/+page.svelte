@@ -55,6 +55,7 @@
 				label=""
 				required
 				blurAtStart={true}
+				maxlength={40}
 				bind:value={planName}
 				on:keypress={(e) => {
 					if (e.key === 'Enter') {

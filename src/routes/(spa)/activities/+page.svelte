@@ -47,6 +47,7 @@
 				placeholder="New activity"
 				label=""
 				required
+				maxlength={40}
 				blurAtStart={true}
 				bind:value={activityName}
 				on:keypress={(e) => {

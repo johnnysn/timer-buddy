@@ -30,7 +30,7 @@ export function createActivitiesStore() {
 					set(activities);
 				} catch (e) {
 					if (e instanceof ZodError) {
-						addToast({message: "Could not load data from local storage.", type: "error"});
+						addToast({ message: 'Could not load data from local storage.', type: 'error' });
 						console.error(e.issues);
 					} else {
 						console.error(e);
@@ -194,7 +194,7 @@ export function createActivitiesStore() {
 	}
 
 	function load(activities: Activity[]) {
-		update(curr => {
+		update(() => {
 			return activities;
 		});
 	}

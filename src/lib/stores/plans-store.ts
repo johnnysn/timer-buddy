@@ -28,6 +28,21 @@ export function createPlansStore() {
 					set([]);
 				}
 			}
+
+			activities.subscribe((acts) => {
+				update((curr) => {
+					const activitiesIds = new Set(acts.map((a) => a.id));
+					curr.forEach((plan) => {
+						const filtered = plan.activities.filter((a) => activitiesIds.has(a.activityId));
+
+						if (filtered.length < plan.activities.length) {
+							plan.activities = filtered;
+						}
+					});
+
+					return curr;
+				});
+			});
 		}
 
 		return () => {};
@@ -45,21 +60,6 @@ export function createPlansStore() {
 			return newData;
 		});
 	}
-
-	activities.subscribe((acts) => {
-		update((curr) => {
-			const activitiesIds = new Set(acts.map((a) => a.id));
-			curr.forEach((plan) => {
-				const filtered = plan.activities.filter((a) => activitiesIds.has(a.activityId));
-
-				if (filtered.length < plan.activities.length) {
-					plan.activities = filtered;
-				}
-			});
-
-			return curr;
-		});
-	});
 
 	function add(name: string, description: string) {
 		update((curr) => {

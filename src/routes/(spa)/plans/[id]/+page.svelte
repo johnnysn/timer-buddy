@@ -11,14 +11,18 @@
 	import DndActivityList from './DndActivityList.svelte';
 	import PlanTimer from './PlanTimer.svelte';
 	import intervalFormatter from '$lib/utils/interval-formatter';
+	import { addMinutes, endOfDay } from 'date-fns';
+	import { onDestroy, onMount } from 'svelte';
 
 	let plan: Plan | undefined;
 	let execution: PlanExecution | undefined;
 	let planActivities: { id: string; activity: Activity }[] = [];
 	let averageDuration = 0;
+	let watchDogInterval: number;
 
 	$: {
 		plan = $plans.find((p) => p.id === $page.params.id);
+
 		const validIds = new Set($activities.map((a) => a.id));
 		planActivities =
 			plan?.activities
@@ -35,6 +39,22 @@
 
 		execution = plan?.executions.find((e) => !e.end);
 	}
+
+	onMount(() => {
+		watchDogInterval = setInterval(() => {
+			if (execution) {
+				const limit = endOfDay(execution.start);
+				const now = new Date();
+				if (now.getTime() > limit.getTime()) {
+					plans.finish(plan!.id);
+				}
+			}
+		}, 3000);
+	});
+
+	onDestroy(() => {
+		clearInterval(watchDogInterval);
+	});
 
 	function handleDeletePlan(decision: string) {
 		if (decision === 'yes') {

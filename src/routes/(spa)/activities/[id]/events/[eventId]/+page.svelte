@@ -39,27 +39,29 @@
 	class="w-full max-w-screen-md border rounded-lg border-gray-200 dark:border-gray-700 p-4"
 	on:submit={submit}
 	>
-	<h2 class="text-xl font-title font-medium mb-4">Edit event</h2>
+	<div class="flex flex-col items-center">
+		<h2 class="text-xl font-title font-medium mb-4">Edit event</h2>
 
-	<div class="w-full max-w-[280px] mb-2">
-		<Input
-			name="start"
-			type="datetime-local"
-			label="Event start"
-			value={started}
-			step={1}
-			required
-		/>
-	</div>
-	<div class="w-full max-w-[280px] mb-2">
-		<Input
-			name="end"
-			type="datetime-local"
-			label="Event finish"
-			value={finished}
-			step={1}
-			required
-		/>
+		<div class="w-full max-w-[280px] mb-2">
+			<Input
+				name="start"
+				type="datetime-local"
+				label="Event start"
+				value={started}
+				step={1}
+				required
+			/>
+		</div>
+		<div class="w-full max-w-[280px] mb-2">
+			<Input
+				name="end"
+				type="datetime-local"
+				label="Event finish"
+				value={finished}
+				step={1}
+				required
+			/>
+		</div>
 	</div>
 
 	<div class="flex justify-around items-center">

@@ -27,7 +27,7 @@
 		</a>
 
 		<div class="flex items-center">
-			<div class="flex items-center border-2 rounded-full border-gray-300 dark:border-gray-800 p-3">
+			<div class="flex items-center border-r border-main-dark dark:border-main p-3">
 				<Toggle bind:checked={$darkModeStore} />
 			</div>
 

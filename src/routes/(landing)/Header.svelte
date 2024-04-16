@@ -1,4 +1,4 @@
-<header class="w-full flex justify-center bg-white mb-4">
+<header class="w-full flex justify-center bg-transparent mb-4">
 	<div class="w-full h-20 px-2 md:px-6 flex justify-between items-center max-w-screen-xl">
 		<a href="/" class="flex items-center gap-2">
 			<img src="/Logo.png" alt="Timer Buddy" width="95" height="75" class="w-auto h-[48px]" />

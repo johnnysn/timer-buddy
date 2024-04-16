@@ -3,7 +3,9 @@
 </script>
 
 <div>
-	<div class="min-h-screen bg-white text-black flex flex-col">
+	<div
+		class="min-h-screen bg-gradient-to-tr from-white via-gray-50 to-main-sub-light to-95% text-black flex flex-col"
+	>
 		<Header />
 
 		<div class="w-full flex justify-center flex-1">

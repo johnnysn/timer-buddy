@@ -15,6 +15,7 @@ export default {
       main: "#6194B1",
       "main-hover": "#81B4D1",
       "main-dark": "#2E5F7F",
+      "main-sub-light": "#BBD1DD",
       "main-light": "#DDF3FE",
       accent: "#E1634C",
       "accent-hover": "#F1735C",

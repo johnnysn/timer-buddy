@@ -20,6 +20,7 @@
 
 	function cancelActivity() {
 		activities.cancel(activity.id);
+		justStopped = false;
 	}
 </script>
 
@@ -85,6 +86,13 @@
 					class="cursor-pointer text-gray-400 hover:text-black dark:hover:text-white"
 				>
 					Dismiss
+				</button>
+				<span class="rounded-full w-1 h-1 bg-gray-500"></span>
+				<button
+					on:click={cancelActivity}
+					class="cursor-pointer text-accent hover:text-black dark:hover:text-white"
+				>
+					Cancel
 				</button>
 			</div>
 		</div>

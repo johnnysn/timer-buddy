@@ -26,7 +26,7 @@
 
 <div class="w-full flex flex-col items-center">
 	<div class="w-full flex items-center">
-		<a class="w-full h-full py-2" href="/activities/{activity.id}">
+		<a class="w-full h-full py-4" href="/activities/{activity.id}">
 			<div class="w-full flex items-center">
 				<button class="mr-2 text-main">
 					<Info />

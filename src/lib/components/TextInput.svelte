@@ -20,8 +20,8 @@
 
 {#if $$props.label}
 	<label for={$$props.id || $$props.name} class="block text-sm font-medium mb-1">
-    {$$props.label}
-  </label>
+		{$$props.label}
+	</label>
 {/if}
 
 <input
@@ -35,6 +35,7 @@
 	bind:value
 	on:blur
 	on:change
-  on:keypress
+	on:keypress
+	on:input
 	use:focusOnInit
 />

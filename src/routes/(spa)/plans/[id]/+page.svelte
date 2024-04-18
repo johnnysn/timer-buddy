@@ -16,7 +16,7 @@
 
 	let plan: Plan | undefined;
 	let execution: PlanExecution | undefined;
-	let planActivities: { id: string; activity: Activity }[] = [];
+	let planActivities: { id: string; activity: Activity; checked: boolean }[] = [];
 	let averageDuration = 0;
 	let watchDogInterval: number;
 
@@ -24,18 +24,22 @@
 		plan = $plans.find((p) => p.id === $page.params.id);
 
 		if (plan) {
+			execution =
+				plan?.executions.length > 0 ? plan.executions[plan.executions.length - 1] : undefined;
+			const checkedActivities = new Set<string>();
+			execution?.checkedActivities.forEach((id) => checkedActivities.add(id));
+
 			planActivities =
 				plan.activities.map((a) => ({
 					id: a.id,
-					activity: $activities.find((actv) => actv.id === a.activityId)!
+					activity: $activities.find((actv) => actv.id === a.activityId)!,
+					checked: checkedActivities.has(a.activityId)
 				})) ?? [];
 
 			averageDuration = planActivities.reduce(
 				(total, a) => total + (a.activity.averageDuration ?? 0),
 				0
 			);
-
-			execution = plan?.executions.find((e) => !e.end);
 		}
 	}
 
@@ -72,6 +76,14 @@
 
 	function finish() {
 		plans.finish(plan!.id);
+	}
+
+	function handleCheckActivity(activityId: string) {
+		plans.checkActivity(plan!.id, activityId);
+	}
+
+	function handleUncheckActivity(activityId: string) {
+		plans.uncheckActivity(plan!.id, activityId);
 	}
 </script>
 
@@ -119,11 +131,9 @@
 <h4 class="mt-4 mb-4 font-title font-medium text-lg">Activities</h4>
 {#if !execution}
 	<div class="w-full mb-4 flex justify-start">
-		<a href={`/plans/${plan?.id}/add-activity`}>
-			<div class="flex flex-row">
-				<PlusCircle color="green" />
-				<span class="ml-2 text-sm">Add activity</span>
-			</div>
+		<a href={`/plans/${plan?.id}/add-activity`} class="flex">
+			<PlusCircle color="green" />
+			<span class="ml-2 text-sm">Add activity</span>
 		</a>
 	</div>
 {/if}
@@ -133,8 +143,10 @@
 {:else}
 	<DndActivityList
 		activities={planActivities}
-		isExecuting={execution ? true : false}
+		isExecuting={!!execution}
 		on:delete={(evt) => handleDeleteActivity(evt.detail.id)}
 		on:change={(evt) => handleOrderChanged(evt.detail.arrangement)}
+		on:check={(evt) => handleCheckActivity(evt.detail.activityId)}
+		on:uncheck={(evt) => handleUncheckActivity(evt.detail.activityId)}
 	/>
 {/if}

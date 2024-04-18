@@ -156,7 +156,8 @@ export function createPlansStore() {
 				});
 			plan.executions.push({
 				start: new Date(),
-				target
+				target,
+				checkedActivities: []
 			});
 			return [...curr];
 		});
@@ -187,6 +188,34 @@ export function createPlansStore() {
 		});
 	}
 
+	function checkActivity(id: string, activityId: string) {
+		update((curr) => {
+			const plan = curr.find((p) => p.id === id);
+			if (!plan || plan.executions.length === 0) return curr;
+
+			const execution = plan.executions[plan.executions.length - 1];
+
+			if (execution.checkedActivities.includes(activityId)) return curr;
+
+			execution.checkedActivities.push(activityId);
+			return [...curr];
+		});
+	}
+
+	function uncheckActivity(id: string, activityId: string) {
+		update((curr) => {
+			const plan = curr.find((p) => p.id === id);
+			if (!plan || plan.executions.length === 0) return curr;
+
+			const execution = plan.executions[plan.executions.length - 1];
+
+			if (!execution.checkedActivities.includes(activityId)) return curr;
+
+			execution.checkedActivities = execution.checkedActivities.filter((id) => id !== activityId);
+			return [...curr];
+		});
+	}
+
 	return {
 		subscribe: actualStore.subscribe,
 		add,
@@ -197,7 +226,9 @@ export function createPlansStore() {
 		updateArrangement,
 		start,
 		finish,
-		load
+		load,
+		checkActivity,
+		uncheckActivity
 	};
 }
 

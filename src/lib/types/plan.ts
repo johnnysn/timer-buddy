@@ -14,4 +14,5 @@ export interface PlanExecution {
 	start: Date;
 	target: Date;
 	end?: Date;
+	checkedActivities: string[];
 }

@@ -5,6 +5,7 @@ import z, { ZodError } from 'zod';
 import { activitySchema } from '$lib/schemas/activity-schema';
 import type { Event } from '$lib/types/event';
 import { addToast } from './toast-store';
+import { createId } from '@paralleldrive/cuid2';
 
 function averageDuration(events: Event[]) {
 	if (events.length === 0) return undefined;
@@ -63,7 +64,7 @@ export function createActivitiesStore() {
 
 		const activity = {
 			active: false,
-			id: crypto.randomUUID(),
+			id: createId(),
 			name,
 			description,
 			events: []
@@ -107,7 +108,7 @@ export function createActivitiesStore() {
 			}
 
 			const event = {
-				id: crypto.randomUUID(),
+				id: createId(),
 				start: new Date()
 			};
 

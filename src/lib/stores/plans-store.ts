@@ -6,6 +6,7 @@ import { addToast } from './toast-store';
 import { browser } from '$app/environment';
 import { endOfDay } from 'date-fns';
 import { activities } from './activities-store';
+import { createId } from '@paralleldrive/cuid2';
 
 export function createPlansStore() {
 	const actualStore = writable<Plan[]>([], (set) => {
@@ -64,7 +65,7 @@ export function createPlansStore() {
 	function add(name: string, description: string) {
 		update((curr) => {
 			const newOne = {
-				id: crypto.randomUUID(),
+				id: createId(),
 				name,
 				description,
 				active: false,
@@ -106,7 +107,7 @@ export function createPlansStore() {
 			}
 
 			plan.activities.push({
-				id: crypto.randomUUID(),
+				id: createId(),
 				activityId
 			});
 			return [...curr];

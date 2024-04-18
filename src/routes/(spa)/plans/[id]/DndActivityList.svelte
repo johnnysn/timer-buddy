@@ -36,7 +36,10 @@
 			class="item-container flex items-center justify-between px-2 py-3"
 			animate:flip={{ duration: flipDurationMs }}
 		>
-			<h3 class="font-medium">
+			<h3 class="flex flex-row items-center font-medium">
+				{#if isExecuting}
+					<input type="checkbox" class="h-5 w-5 mr-2" />
+				{/if}
 				{a.activity.name}
 				<span>
 					{a.activity.averageDuration

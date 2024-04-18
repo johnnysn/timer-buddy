@@ -85,6 +85,9 @@
 		</div>
 		<p class="text-xs">Must be greater than "Now + Plan duration"</p>
 	</div>
+	<div class="text-center mt-6 md:mx-16">
+		<strong>In addition to the countdown for the target time, the activities will be available for check</strong>
+	</div>
 
 
 	<div class="flex justify-around items-center">

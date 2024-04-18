@@ -24,8 +24,11 @@
 		plan = $plans.find((p) => p.id === $page.params.id);
 
 		if (plan) {
+			const exLength = plan.executions.length;
 			execution =
-				plan?.executions.length > 0 ? plan.executions[plan.executions.length - 1] : undefined;
+				exLength > 0 && !plan.executions[exLength - 1].end
+					? plan.executions[exLength - 1]
+					: undefined;
 			const checkedActivities = new Set<string>();
 			execution?.checkedActivities.forEach((id) => checkedActivities.add(id));
 

@@ -183,6 +183,10 @@ export function createPlansStore() {
 		});
 	}
 
+		function reorder(plans: Plan[]) {
+		load(plans);
+	}
+
 	function load(plans: Plan[]) {
 		update(() => {
 			return plans;
@@ -227,6 +231,7 @@ export function createPlansStore() {
 		updateArrangement,
 		start,
 		finish,
+		reorder,
 		load,
 		checkActivity,
 		uncheckActivity

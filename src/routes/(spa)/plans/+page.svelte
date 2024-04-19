@@ -8,6 +8,8 @@
 	import { activities } from '$lib/stores/activities-store';
 	import intervalFormatter from '$lib/utils/interval-formatter';
 	import type { Plan } from '$lib/types/plan';
+  import {flip} from "svelte/animate";
+  import {dndzone, type DndEvent } from "svelte-dnd-action";
 
 	let showForm = false;
 	let planName = '';
@@ -51,6 +53,15 @@
 			}
 		});
 		return intervalFormatter.format(total);
+	}
+
+	const flipDurationMs = 300;
+
+	function handleDndConsider(evt: CustomEvent<DndEvent<Plan>>) {
+		filteredPlans = evt.detail.items;
+	}
+	function handleDndFinalize(evt: CustomEvent<DndEvent<Plan>>) {
+		plans.reorder(evt.detail.items);
 	}
 </script>
 
@@ -120,9 +131,17 @@
 		</div>
 	{/if}
 
-	<ul class="flex flex-col gap-2">
+	<ul
+		use:dndzone={{ items: filteredPlans, flipDurationMs, dropTargetStyle: {} }}
+		on:consider={handleDndConsider}
+		on:finalize={handleDndFinalize}
+		class="flex flex-col gap-2"
+	>
 		{#each filteredPlans as plan (plan.id)}
-			<li class="item-container w-full" transition:fade={{ delay: 250, duration: 300 }}>
+			<li
+				class="item-container w-full"
+				animate:flip="{{duration: flipDurationMs}}"
+			>
 				<a href={`/plans/${plan.id}`} class="py-4 px-2 w-full h-full block">
 					<div class="w-full flex items-center">
 						<button class="mr-2 text-main">

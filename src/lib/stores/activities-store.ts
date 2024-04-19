@@ -194,6 +194,10 @@ export function createActivitiesStore() {
 		});
 	}
 
+	function reorder(activities: Activity[]) {
+		load(activities);
+	}
+
 	function load(activities: Activity[]) {
 		update(() => {
 			return activities;
@@ -210,6 +214,7 @@ export function createActivitiesStore() {
 		cancel,
 		deleteEvent,
 		editEvent,
+		reorder,
 		load
 	};
 }

@@ -8,6 +8,8 @@
 	import { slide } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import type { Activity } from '$lib/types/activity';
+  import {flip} from "svelte/animate";
+  import {dndzone, type DndEvent } from "svelte-dnd-action";
 
 	let isFormShown = false;
 	let activityName = '';
@@ -45,6 +47,15 @@
 				return true;
 			}
 		});
+	}
+
+	const flipDurationMs = 300;
+	
+	function handleDndConsider(evt: CustomEvent<DndEvent<Activity>>) {
+		filteredActivities = evt.detail.items;
+	}
+	function handleDndFinalize(evt: CustomEvent<DndEvent<Activity>>) {
+		activities.reorder(evt.detail.items);
 	}
 </script>
 
@@ -110,11 +121,16 @@
 		</div>
 	{/if}
 
-	<ul class="flex flex-col gap-2">
+	<ul
+		use:dndzone={{ items: filteredActivities, flipDurationMs, dropTargetStyle: {} }}
+		on:consider={handleDndConsider}
+		on:finalize={handleDndFinalize}
+		class="flex flex-col gap-2"
+	>
 		{#each filteredActivities as activity (activity.id)}
 			<li
 				class="item-container px-2 w-full max-w-screen-md"
-				transition:fade={{ delay: 250, duration: 300 }}
+				animate:flip={{duration: flipDurationMs}}
 			>
 				<ActivityControl {activity} />
 			</li>

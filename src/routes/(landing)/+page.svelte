@@ -31,7 +31,7 @@
 	</section>
 
 	<section id="cards" class="w-full bg-main-sub-light py-12 relative">
-		<div class="absolute -top-2 arrow-down left-1/2 transform -translate-x-1/2"></div>
+		<div class="absolute -top-2 arrow-down left-1/2 transform -translate-x-1/2 md:hidden"></div>
 
 		<div class="flex flex-col w-full max-w-screen-lg mx-auto px-2 md:px-6 mt-0 md:mt-4">
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-4">

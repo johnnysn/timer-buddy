@@ -4,7 +4,7 @@
 
 <div>
 	<div
-		class="min-h-screen bg-gradient-to-tr from-white via-gray-50 to-main-sub-light to-95% text-black flex flex-col"
+		class="min-h-dvh bg-gradient-to-tr from-white via-gray-50 to-main-sub-light to-95% text-black flex flex-col"
 	>
 		<Header />
 

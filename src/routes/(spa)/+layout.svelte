@@ -7,7 +7,7 @@
 
 <div class={darkModeClass}>
 	<div
-		class="relative min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white transition-colors duration-300 flex flex-col"
+		class="relative min-h-dvh bg-white text-black dark:bg-gray-900 dark:text-white transition-colors duration-300 flex flex-col"
 	>
 		<div class="fixed top-0 w-full"><Header /></div>
 

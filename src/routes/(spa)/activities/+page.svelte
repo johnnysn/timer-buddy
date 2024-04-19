@@ -40,7 +40,7 @@
 			const key = searchKey.trim().toLowerCase();
 
 			if (key !== '') {
-				return a.name.trim().toLowerCase().startsWith(key);
+				return a.name.trim().toLowerCase().includes(key);
 			} else {
 				return true;
 			}

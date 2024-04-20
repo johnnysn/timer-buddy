@@ -1,6 +1,6 @@
 <div class="w-full">
 	<section id="hero" class="flex flex-col px-2 md:px-6 mt-0 md:mt-4 mb-0 md:mb-6">
-		<div class="flex flex-wrap items-center justify-center max-w-screen-xl mx-auto">
+		<div class="flex flex-wrap items-center justify-center max-w-screen-lg mx-auto">
 			<div class="md:w-2/5 flex flex-col items-center">
 				<h1 class="font-bold font-title mb-4 md:mb-6 text-center">
 					<span class="text-3xl md:text-4xl lg:text-5xl italic">Time to</span> <br />

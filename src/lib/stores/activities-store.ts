@@ -148,12 +148,20 @@ export function createActivitiesStore() {
 			if (activityIndex === -1) return curr;
 			const activity = curr[activityIndex];
 
-			const activeEvent = activity.events.find((e) => !e.end);
-			if (!activeEvent) return curr;
+			let targetEvent: Event | null | undefined = activity.events.find((e) => !e.end);
+			if (!targetEvent) {
+				targetEvent = activity.events.reduce<Event | null>((latest, e) => {
+					if (!latest || e.end! > latest.end!) return e;
+					return latest;
+				}, null);
+			}
+
+			if (!targetEvent) return curr;
 
 			activity.active = false;
 			activity.activeEventStartedAt = undefined;
-			activity.events = activity.events.filter((e) => e.id !== activeEvent.id);
+			activity.events = activity.events.filter((e) => e.id !== targetEvent.id);
+			activity.averageDuration = averageDuration(activity.events);
 
 			return [...curr];
 		});

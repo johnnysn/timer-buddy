@@ -19,7 +19,7 @@
 - 📊 Automatic average duration per activity
 - 🧩 Group activities into "plans" for full-process time estimates
 - 💾 **All data is stored locally** using browser Local Storage
-- 🔐 Use without account or login — fully private
+- 🔐 Use without account or login
 - 📥 Export and import your data as a `.json` file to restore on another browser or device
 
 ---
@@ -38,13 +38,6 @@
 
 - [SvelteKit](https://kit.svelte.dev/)
 - [Tailwind CSS](https://tailwindcss.com/)
-- LocalStorage API
-
----
-
-## 🔐 Privacy & Data
-
-Timer Buddy stores all user data **locally in your browser**. It never sends any data to a server — your activities and plans remain 100% private.
 
 ---
 

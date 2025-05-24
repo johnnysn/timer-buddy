@@ -1,38 +1,59 @@
-# create-svelte
+# ⏱️ Timer Buddy
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+[![SvelteKit](https://img.shields.io/badge/Built%20with-SvelteKit-orange?logo=svelte)](https://kit.svelte.dev/)
+[![TailwindCSS](https://img.shields.io/badge/Styled%20with-TailwindCSS-38bdf8?logo=tailwindcss)](https://tailwindcss.com/)
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel)](https://timer-buddy.vercel.app/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## Creating a project
+> Track your time, organize your day.
 
-If you're seeing this, you've probably already done this step. Congrats!
+**Timer Buddy** is a lightweight demo productivity tool built with [SvelteKit](https://kit.svelte.dev/) and [Tailwind CSS](https://tailwindcss.com/). It helps you **track how much time you spend on your daily activities**, calculate average durations, and **group activities into custom plans** to estimate total time for complex routines.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+🔗 **Try it now**: [https://timer-buddy.vercel.app/](https://timer-buddy.vercel.app/)
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+---
 
-## Developing
+## ✨ Features
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+- ⏳ Start and stop timers for each activity
+- 📊 Automatic average duration per activity
+- 🧩 Group activities into "plans" for full-process time estimates
+- 💾 **All data is stored locally** using browser Local Storage
+- 🔐 Use without account or login — fully private
+- 📥 Export and import your data as a `.json` file to restore on another browser or device
 
-```bash
-npm run dev
+---
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+## 🖼️ Screenshots
 
-## Building
+![Activity List](./screenshots/landing.png)
 
-To create a production version of your app:
+| Activities                                     | Create Plan                            | Data Export                              |
+| ---------------------------------------------- | -------------------------------------- | ---------------------------------------- |
+| ![Activity List](./screenshots/activities.png) | ![Create Plan](./screenshots/plan.png) | ![Export Data](./screenshots/backup.png) |
 
-```bash
-npm run build
-```
+---
 
-You can preview the production build with `npm run preview`.
+## 🛠️ Tech Stack
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+- [SvelteKit](https://kit.svelte.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- LocalStorage API
+
+---
+
+## 🔐 Privacy & Data
+
+Timer Buddy stores all user data **locally in your browser**. It never sends any data to a server — your activities and plans remain 100% private.
+
+---
+
+## 📤 Backup & Restore
+
+Use the **Export** option to download a JSON file with all your data. Later, you can **Import** it in any browser to restore your activities and plans.
+
+---
+
+## 📎 License
+
+This project is licensed under the [MIT License](LICENSE).

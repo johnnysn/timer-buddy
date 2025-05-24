@@ -17,6 +17,8 @@
 			</div>
 		</div>
 
-		<footer class="py-6 text-center">Copyright &copy; {new Date().getFullYear()}</footer>
+		<footer class="py-6 text-center">
+			Copyright &copy; {new Date().getFullYear()}. Released under the MIT License.
+		</footer>
 	</div>
 </div>

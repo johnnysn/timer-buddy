@@ -26,7 +26,7 @@
 
 ## 🖼️ Screenshots
 
-![Activity List](./screenshots/landing.png)
+![Landing page](./screenshots/landing.png)
 
 | Activities                                     | Create Plan                            | Data Export                              |
 | ---------------------------------------------- | -------------------------------------- | ---------------------------------------- |
